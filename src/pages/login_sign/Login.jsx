@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Title from "../../components/Title";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -32,7 +33,7 @@ export default function Login() {
   return (
     <>
       <div>
-        <h1>Log In</h1>
+        <Title mainTitle="Log In"/>
         <form onSubmit={handleSubmit}>
           <input
             name="username"

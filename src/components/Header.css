@@ -1,0 +1,68 @@
+/* 헤더 */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 60px;
+}
+
+/* 로고 컨테이너*/
+.logo_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* 로고 이미지 */
+.logo {
+    height: 40px;
+}
+
+/* 메뉴들 */
+.header_menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* 메뉴 각각 */
+.header_menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #5D5A88;
+    transition: color 0.3s ease;
+}
+
+/* 메뉴 각각 호버시 */
+.header_menu a:hover {
+    color: #DFDEF1;
+}
+
+/* 로그인 버튼 */
+.auth_button {
+    color: #5D5A88;
+    position: absolute;
+    right: 0; /* 오른쪽에 위치하게 함함 */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* 로그인 버튼 호버시 */
+.auth_button:hover {
+    color: #DFDEF1;
+}
+
+/* 로그인 아이콘 */
+.auth_icon {
+    height: 20px;
+    margin-right: 5px;
+}
+

@@ -78,7 +78,7 @@ export default function Signup() {
 
     return (
         <div>
-            <h1>Sign Up</h1>
+            <Title mainTitle="Sign Up"/>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">이름</label>
                 <input
