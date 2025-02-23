@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Title from "../../components/Title";
+import "./Signup.css";
 
 export default function Signup() {
     // 사용자가 입력한 formData 상태 관리
@@ -77,75 +79,78 @@ export default function Signup() {
     };
 
     return (
-        <div>
+        <div className="signup_form_container">
             <Title mainTitle="Sign Up"/>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">이름</label>
-                <input
-                    name="name"
-                    placeholder="이름을 입력해주세요"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-                <label htmlFor="username">아이디</label>
-                <input
-                    name="username"
-                    placeholder="아이디를 입력해주세요"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
-                <label htmlFor="password">비밀번호</label>
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="비밀번호를 입력해주세요"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                <label htmlFor="passwordConfirm">비밀번호 확인</label>
-                <input
-                    name="passwordConfirm"
-                    type="password"
-                    placeholder="비밀번호를 입력해주세요"
-                    value={formData.passwordConfirm}
-                    onChange={handleChange}
-                />
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
-                    {/* 파일 이름을 보여주는 인풋 박스 */}
+            <div className="signup_form_wrapper">
+                <form className="signup_form" onSubmit={handleSubmit}>
+                    <label className="signup_label" htmlFor="name">이름</label>
                     <input
-                        type="text"
-                        placeholder="파일 이름"
-                        value={fileName}
-                        readOnly
+                        className="signup_input_short"
+                        name="name"
+                        placeholder="이름을 입력해주세요"
+                        value={formData.name}
+                        onChange={handleChange}
                     />
-                    {/* 파일 선택 버튼 */}
-                    <label htmlFor="profilePicture"> 파일 선택 </label>
+                    <label className="signup_label" htmlFor="username">아이디</label>
                     <input
-                        id="profilePicture"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        style={{ display: "none" }} // 숨겨진 파일 입력 필드
+                        className="signup_input_short"
+                        name="username"
+                        placeholder="아이디를 입력해주세요"
+                        value={formData.username}
+                        onChange={handleChange}
                     />
-                </div>
+                    <label className="signup_label" htmlFor="password">비밀번호</label>
+                    <input
+                        className="signup_input_short"
+                        name="password"
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                    <label className="signup_label" htmlFor="passwordConfirm">비밀번호 확인</label>
+                    <input
+                        className="signup_input_short"
+                        name="passwordConfirm"
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요"
+                        value={formData.passwordConfirm}
+                        onChange={handleChange}
+                    />
+                    <label className="signup_label" >프로필 사진</label>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
+                        {/* 파일 이름을 보여주는 인풋 박스 */}
+                        <input
+                            className="signup_input_long"
+                            type="text"
+                            placeholder="파일 이름"
+                            value={fileName}
+                            readOnly
+                        />
+                        {/* 파일 선택 버튼 */}
+                        <label className="signup_profile_select" htmlFor="profilePicture"> 파일 선택 </label>
+                        <input
+                            id="profilePicture"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            style={{ display: "none" }} // 숨겨진 파일 입력 필드
+                        />
+
+                    </div>
+                    
+                    <button className="signup_button" type="submit" style={{ marginTop: "20px" }}>회원가입</button>
+                </form>
                 {/* 프로필 사진 미리보기 섹션 */}
                 {preview && (
-                    <div style={{ marginTop: "20px" }}>
+                    <div className="signup_profile" style={{ marginTop: "20px" }}>
                         <img
                             src={preview}
                             alt="미리보기"
-                            style={{
-                                width: "300px",
-                                height: "300px",
-                                objectFit: "cover",
-                                borderRadius: "50%",
-                                border: "1px solid #ccc",
-                            }}
                         />
                     </div>
                 )}
-                <button type="submit" style={{ marginTop: "20px" }}>회원가입</button>
-            </form>
+            </div>
         </div>
     );
 }
