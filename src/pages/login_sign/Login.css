@@ -1,0 +1,97 @@
+/* 로그인 페이지 컨테이너 */
+.login_container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-block: 30px;
+}
+/* 앱 설명 컨테이너 */
+.app_discription {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    border: #f2f1fa 3px solid;
+    border-radius: 30px;
+    color: #8d8ba7;
+}
+
+.app_discription span {
+    font-weight: bold;
+}
+.app_discrption p {
+    margin-bottom: 0;
+}
+
+/* 로그인 폼 컨테이너 */
+.login_form_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로그인 폼 래퍼(title 제외) */
+.login_form_wrapper{
+    width: 310px;
+    background-color: #f2f1fa;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+/* 로그인 폼*/
+.login_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* 폼의 전체 크기 설정 */
+}
+
+/* 로그인 인풋*/
+.login_username,
+.login_password {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    width: 100%; 
+    max-width: 300px; 
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+/* 인풋 포커스 시 보더 제거 */
+.login_username:focus,
+.login_password:focus {
+    outline: none;
+}
+
+/* 로그인 버튼 */
+.login_button {
+    width: 100%;
+    max-width: 300px; 
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #5d5a88;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    transition: background-color 0.3s ease;
+}
+
+.login_button:hover {
+    background-color: #bab9cd;
+}
+
+/* 회원가입 버튼 */
+.goto_signup {
+    color: #9795b5;
+    text-decoration-line: underline;
+    font-size: small;
+    margin-right: 10px;
+}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Title from "../../components/Title";
+import logo from '../../assets/images/Logo_mini.png';  
+import './Login.css';
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -31,30 +33,42 @@ export default function Login() {
   };
 
   return (
-    <>
-      <div>
-        <Title mainTitle="Log In"/>
-        <form onSubmit={handleSubmit}>
-          <input
-            name="username"
-            placeholder="아이디를 입력해주세요"
-            value={credentials.username}
-            onChange={handleChange}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-          <button type="submit">로그인</button>
-        </form>
-        <p onClick={() => navigate("/signup")} style={{ cursor: "pointer", color: "blue" }}>
-          아직 회원가입을 안 하셨나요? 회원가입 바로가기
-        </p>
-
-      </div>
-    </>
+    <div className="login_container">
+        <div className="app_discription">
+            <span>"당신의 취업 여정을 돕는 AI 파트너"</span>
+            <img src={logo} alt="Logo" className="logo"/>
+            <p>AI 기술로 최신 뉴스와 채용 정보를 분석해<br/>
+                취업 준비생과 구직자에게 맞춤형 정보를 제공합니다. <br/>
+                취업봇다리와 함께, 가능성의 다리를 건너보세요. <br/><br/>
+                "취업의 보따리를 풀어드립니다. 지금 시작하세요!"
+            </p>
+        </div>
+        <div className="login_form_container">
+            <Title mainTitle="Log In"/>
+            <div className="login_form_wrapper">
+                <form className="login_form" onSubmit={handleSubmit}>
+                    <input
+                        className="login_username"
+                        name="username"
+                        placeholder="아이디를 입력해주세요"
+                        value={credentials.username}
+                        onChange={handleChange}
+                    />
+                    <input
+                        className="login_password"
+                        name="password"
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요"
+                        value={credentials.password}
+                        onChange={handleChange}
+                    />
+                    <button className="login_button" type="submit">로그인</button>
+                </form>
+                <div className="goto_signup" onClick={() => navigate("/signup")} style={{ cursor: "pointer" }}>
+                    아직 회원가입을 안 하셨나요? 회원가입 바로가기
+                </div>
+            </div>
+        </div>
+    </div>
   );
 }
