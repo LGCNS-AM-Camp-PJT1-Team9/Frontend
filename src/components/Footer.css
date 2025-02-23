@@ -1,0 +1,18 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    color: #b8b8b8; /* 텍스트 색상 */
+    font-size: 14px; /* 폰트 크기 */
+    border-top: 1px solid #e9ecef; /* 상단 테두리 */
+}
+
+.footer a {
+    color: #b8b8b8; /* 텍스트 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+.footer a:hover {
+    text-decoration: underline; /* 링크 호버 시 밑줄 추가 */
+}

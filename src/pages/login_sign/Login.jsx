@@ -53,6 +53,7 @@ export default function Login() {
         <p onClick={() => navigate("/signup")} style={{ cursor: "pointer", color: "blue" }}>
           아직 회원가입을 안 하셨나요? 회원가입 바로가기
         </p>
+
       </div>
     </>
   );
