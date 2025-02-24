@@ -20,8 +20,10 @@ export default function Login() {
   // 폼 제출 핸들러
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("로그인 요청 시작:", credentials); // 로그 추가
+
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/signin", credentials);
+      const response = await axios.post("http://localhost:8072/jobbotdari-user/api/auth/signin", credentials);
       const { accessToken } = response.data.data; // response.data와 response.data.data 중 어느것이 맞을까
 
       // 로그인 성공 시 토큰 저장 및 페이지 이동
@@ -64,7 +66,7 @@ export default function Login() {
                         onChange={handleChange}
                         backgroundColor="white"
                     />
-                    <PurpleBtn text="로그인" type="submit" width="100%"/>
+                    <PurpleBtn onClick={() => console.log("로그인 버튼 클릭됨")} text="로그인" type="submit" width="100%"/>
                 </form>
                 <div className="goto_signup" onClick={() => navigate("/signup")} style={{ cursor: "pointer" }}>
                     아직 회원가입을 안 하셨나요? 회원가입 바로가기

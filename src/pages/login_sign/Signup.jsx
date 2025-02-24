@@ -64,7 +64,7 @@ export default function Signup() {
 
         try {
             //서버로 POST 요청 전송
-            const response = await axios.post("http://localhost:8080/api/auth/signup", formDataToSend, {
+            const response = await axios.post("http://localhost:8072/jobbotdari-user/api/auth/signup", formDataToSend, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

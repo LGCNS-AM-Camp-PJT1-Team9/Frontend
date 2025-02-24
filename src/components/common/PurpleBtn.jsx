@@ -1,11 +1,11 @@
 import React from 'react';
 import './PurpleBtn.css';
 
-const PurpleBtn = ({ text, width = '100%' }) => {
+const PurpleBtn = ({ type="button", text, width = '100%' }) => {
   return (
     <button 
       className="purple_button" 
-      type="button" 
+      type={type}
       style={{ width }}
     >
       {text}
