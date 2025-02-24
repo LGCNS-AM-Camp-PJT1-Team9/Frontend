@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Title from "../../components/Title";
+import Title from "../../components/common/Title";
 import logo from '../../assets/images/Logo_mini.png';  
 import './Login.css';
 
@@ -44,7 +44,7 @@ export default function Login() {
             </p>
         </div>
         <div className="login_form_container">
-            <Title mainTitle="Log In"/>
+            <Title mainTitle="로그인"/>
             <div className="login_form_wrapper">
                 <form className="login_form" onSubmit={handleSubmit}>
                     <input

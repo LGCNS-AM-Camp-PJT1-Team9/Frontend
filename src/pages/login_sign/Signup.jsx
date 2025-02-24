@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Title from "../../components/Title";
+import Title from "../../components/common/Title";
 import "./Signup.css";
+import { InputLabel } from "../../components/common/InputLabel";
+import defatultProfile from "../../assets/images/Defalt_Profile_Image.png";
 
 export default function Signup() {
     // 사용자가 입력한 formData 상태 관리
@@ -83,73 +85,59 @@ export default function Signup() {
             <Title mainTitle="Sign Up"/>
             <div className="signup_form_wrapper">
                 <form className="signup_form" onSubmit={handleSubmit}>
-                    <label className="signup_label" htmlFor="name">이름</label>
-                    <input
-                        className="signup_input_short"
-                        name="name"
-                        placeholder="이름을 입력해주세요"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    <label className="signup_label" htmlFor="username">아이디</label>
-                    <input
-                        className="signup_input_short"
-                        name="username"
-                        placeholder="아이디를 입력해주세요"
-                        value={formData.username}
-                        onChange={handleChange}
-                    />
-                    <label className="signup_label" htmlFor="password">비밀번호</label>
-                    <input
-                        className="signup_input_short"
-                        name="password"
-                        type="password"
-                        placeholder="비밀번호를 입력해주세요"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                    <label className="signup_label" htmlFor="passwordConfirm">비밀번호 확인</label>
-                    <input
-                        className="signup_input_short"
-                        name="passwordConfirm"
-                        type="password"
-                        placeholder="비밀번호를 입력해주세요"
-                        value={formData.passwordConfirm}
-                        onChange={handleChange}
-                    />
-                    <label className="signup_label" >프로필 사진</label>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
-                        {/* 파일 이름을 보여주는 인풋 박스 */}
-                        <input
-                            className="signup_input_long"
-                            type="text"
-                            placeholder="파일 이름"
-                            value={fileName}
-                            readOnly
+                    <div className="display_flex">
+                        <InputLabel
+                            label="이름"
+                            name="name"
+                            placeholder="이름을 입력해주세요"
+                            value={formData.name}
+                            onChange={handleChange}
                         />
-                        {/* 파일 선택 버튼 */}
-                        <label className="signup_profile_select" htmlFor="profilePicture"> 파일 선택 </label>
-                        <input
-                            id="profilePicture"
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            style={{ display: "none" }} // 숨겨진 파일 입력 필드
+                        <InputLabel
+                            label="아이디"
+                            name="username"
+                            placeholder="아이디를 입력해주세요"
+                            value={formData.username}
+                            onChange={handleChange}
                         />
-
                     </div>
+                    <div className="display_flex">
+                        <InputLabel
+                            label="비밀번호"
+                            name="password"
+                            type="password"
+                            placeholder="비밀번호를 입력해주세요"
+                            value={formData.password}
+                            onChange={handleChange}
+
+                        />
+                        <InputLabel
+                            label="비밀번호 확인"
+                            name="passwordConfirm"
+                            type="password"
+                            placeholder="비밀번호를 입력해주세요"
+                            value={formData.passwordConfirm}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <InputLabel
+                        label="프로필 사진"
+                        name="profilePicture"
+                        type="file"
+                        placeholder="파일 이름"
+                        value={fileName}
+                        onFileChange={handleFileChange}
+                    />
                     
                     <button className="signup_button" type="submit" style={{ marginTop: "20px" }}>회원가입</button>
                 </form>
                 {/* 프로필 사진 미리보기 섹션 */}
-                {preview && (
-                    <div className="signup_profile" style={{ marginTop: "20px" }}>
-                        <img
-                            src={preview}
-                            alt="미리보기"
-                        />
-                    </div>
-                )}
+                <div className="signup_profile" style={{ marginTop: "20px" }}>
+                    <img
+                        src={preview || defatultProfile}
+                        alt="미리보기"
+                    />
+                </div>
             </div>
         </div>
     );

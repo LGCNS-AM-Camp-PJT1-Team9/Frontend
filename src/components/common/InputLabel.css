@@ -1,0 +1,58 @@
+/* InputLabel 컴포넌트 전체 래퍼 */
+.input_label_wrapper {
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;
+width: 100%;
+max-width: 400px; /* 입력 필드의 최대 너비 설정 */
+}
+
+/* InputLabel의 라벨 스타일 */
+.input_label {
+font-weight: bold;
+font-size: small;
+margin-bottom: 5px; /* 라벨과 입력 필드 간격 */
+color: #333; /* 라벨 텍스트 색상 */
+}
+
+/* InputLabel의 입력 필드 스타일 */
+.input_with_label {
+padding: 10px;
+border: none;
+border-radius: 30px;
+background-color: #f2f1fa;
+box-sizing: border-box; /* 패딩 포함 크기 계산 */
+width: 100%; /* 입력 필드가 래퍼에 맞게 확장 */
+max-width: 400px; /* 원하는 최대 너비로 조정 */
+}
+
+/* 포커스 시 스타일 */
+.input_with_label:focus {
+outline: none; /* 기본 포커스 스타일 제거 */
+background-color: #e8e7f5; /* 포커스 시 배경색 변경 */
+}
+
+/* 비활성화된 입력 필드 스타일 */
+.input_with_label:disabled {
+background-color: #e0e0e0; /* 비활성화 시 배경색 */
+cursor: not-allowed; /* 비활성화 상태를 나타내는 커서 */
+}
+
+/* 프로필 사진 파일 선택 (라벨) */
+.file_upload_button{
+    width: 40%;
+    padding: 10px;
+    background-color: #5d5a88;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-size: small;
+}
+
+.file_upload_button:hover {
+    background-color: #bab9cd;
+}
