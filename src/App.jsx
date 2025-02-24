@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Login from "./pages/login_sign/Login";
 import Signup from "./pages/login_sign/Signup";
 import { Navigate } from 'react-router-dom';
+import Test from './pages/Test';
 
 export default function App() {
   // 로그인 여부
@@ -20,6 +21,9 @@ export default function App() {
           <Route path="/signup" element={<Signup/>} />
           {/*메인, 만약 로그인 하지 않았으면, /login으로 이동*/}
           <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> 
+
+          {/* 컴포넌트 테스트용 */}
+          <Route path="/test" element={<Test/>} />
         </Routes>
       </main>
       <Footer />
