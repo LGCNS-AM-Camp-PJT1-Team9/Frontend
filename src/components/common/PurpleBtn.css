@@ -1,0 +1,17 @@
+/* PurpleBtn 스타일 */
+.purple_button {
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #5d5a88;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    transition: background-color 0.3s ease;
+}
+
+.purple_button:hover {
+    background-color: #bab9cd;
+}

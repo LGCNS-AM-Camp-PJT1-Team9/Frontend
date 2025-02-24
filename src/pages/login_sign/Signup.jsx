@@ -4,6 +4,7 @@ import Title from "../../components/common/Title";
 import "./Signup.css";
 import { InputLabel } from "../../components/common/InputLabel";
 import defatultProfile from "../../assets/images/Defalt_Profile_Image.png";
+import PurpleBtn from "../../components/common/PurpleBtn";
 
 export default function Signup() {
     // 사용자가 입력한 formData 상태 관리
@@ -129,7 +130,7 @@ export default function Signup() {
                         onFileChange={handleFileChange}
                     />
                     
-                    <button className="signup_button" type="submit" style={{ marginTop: "20px" }}>회원가입</button>
+                    <PurpleBtn text="회원가입" type="submit" width="100%"/>
                 </form>
                 {/* 프로필 사진 미리보기 섹션 */}
                 <div className="signup_profile" style={{ marginTop: "20px" }}>

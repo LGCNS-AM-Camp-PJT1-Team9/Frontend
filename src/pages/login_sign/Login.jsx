@@ -4,6 +4,8 @@ import axios from "axios";
 import Title from "../../components/common/Title";
 import logo from '../../assets/images/Logo_mini.png';  
 import './Login.css';
+import { InputLabel } from "../../components/common/InputLabel";
+import PurpleBtn from "../../components/common/PurpleBtn";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -47,22 +49,22 @@ export default function Login() {
             <Title mainTitle="로그인"/>
             <div className="login_form_wrapper">
                 <form className="login_form" onSubmit={handleSubmit}>
-                    <input
-                        className="login_username"
+                    <InputLabel
                         name="username"
                         placeholder="아이디를 입력해주세요"
                         value={credentials.username}
                         onChange={handleChange}
+                        backgroundColor="white"
                     />
-                    <input
-                        className="login_password"
+                    <InputLabel
                         name="password"
                         type="password"
                         placeholder="비밀번호를 입력해주세요"
                         value={credentials.password}
                         onChange={handleChange}
+                        backgroundColor="white"
                     />
-                    <button className="login_button" type="submit">로그인</button>
+                    <PurpleBtn text="로그인" type="submit" width="100%"/>
                 </form>
                 <div className="goto_signup" onClick={() => navigate("/signup")} style={{ cursor: "pointer" }}>
                     아직 회원가입을 안 하셨나요? 회원가입 바로가기

@@ -51,43 +51,6 @@
     width: 100%; /* 폼의 전체 크기 설정 */
 }
 
-/* 로그인 인풋*/
-.login_username,
-.login_password {
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 30px;
-    width: 100%; 
-    max-width: 300px; 
-    box-sizing: border-box; /* 패딩 포함 크기 계산 */
-}
-
-/* 인풋 포커스 시 보더 제거 */
-.login_username:focus,
-.login_password:focus {
-    outline: none;
-}
-
-/* 로그인 버튼 */
-.login_button {
-    width: 100%;
-    max-width: 300px; 
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #5d5a88;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    box-sizing: border-box; /* 패딩 포함 크기 계산 */
-    transition: background-color 0.3s ease;
-}
-
-.login_button:hover {
-    background-color: #bab9cd;
-}
-
 /* 회원가입 버튼 */
 .goto_signup {
     color: #9795b5;
