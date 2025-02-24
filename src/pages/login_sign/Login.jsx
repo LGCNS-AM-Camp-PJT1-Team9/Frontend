@@ -66,7 +66,7 @@ export default function Login() {
                         onChange={handleChange}
                         backgroundColor="white"
                     />
-                    <PurpleBtn onClick={() => console.log("로그인 버튼 클릭됨")} text="로그인" type="submit" width="100%"/>
+                    <PurpleBtn text="로그인" type="submit" width="100%"/>
                 </form>
                 <div className="goto_signup" onClick={() => navigate("/signup")} style={{ cursor: "pointer" }}>
                     아직 회원가입을 안 하셨나요? 회원가입 바로가기
