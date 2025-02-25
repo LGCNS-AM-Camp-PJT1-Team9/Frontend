@@ -156,7 +156,7 @@ export default function RecruitmentList() {
 
     return (
         <div className="recruitment-container">
-            <Title mainTitle2={"최근 인기 공고"} />
+            <Title mainTitle="최신 인기 공고" subTitle="주목받는 채용 공고로 취업 기회를 잡으세요!"/>
             <div className="recruitment-grid">
                 {recruitments.map((job) => (
                     <a
