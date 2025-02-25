@@ -7,6 +7,7 @@ import Signup from "./pages/login_sign/Signup";
 import { Navigate } from 'react-router-dom';
 import Test from './pages/Test';
 import AdminPage from './pages/admin/AdminPage';
+import Main from './pages/main/Main';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
 
 

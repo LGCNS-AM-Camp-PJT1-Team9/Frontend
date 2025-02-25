@@ -4,105 +4,97 @@
     margin: 0 auto;
     padding: 40px;
     text-align: center;
-    /*margin-top: 338px; */
-}
-
-/* 제목 스타일 (최근 인기 공고) */
-.recruitment-title {
-    width: 429px;
-    height: 46px;
-    flex-shrink: 0;
-    color: #5D5A88; /* var(--Neutral-Colors-Headings-Black) */
-    text-align: center;
-    font-family: "DM Sans", sans-serif;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 46px; /* 127.778% */
-    margin: 0 auto 30px;
 }
 
 /* 채용공고 카드 리스트 (3개씩 정렬) */
 .recruitment-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
-    gap: 28px; /* 카드 간 간격 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
     justify-content: center;
 }
 
 /* 개별 채용공고 카드 스타일 */
 .recruitment-card {
-    width: 330px;
-    height: 320px;
-    flex-shrink: 0;
-    border-radius: 24px;
-    border: 1px solid #D4D2E3; /* var(--Neutral-Colors-Color-600) */
-    background: #FAFAFF;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: left;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #f2f1fa;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 20px;
+    width: 330px;
+    height: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 텍스트 색상 상속 */
+}
+
+.recruitment-card:hover {
+    transform: translateY(-10px);
 }
 
 /* 공고 제목 스타일 */
 .company-title {
     width: 300px;
     height: 38px;
-    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
     font-weight: 700;
-    font-size: 19px;
-    line-height: 38px;
-    letter-spacing: 0px;
-    color: #000000;
+    color: #5d5a88;
+    text-align: center;
     margin-bottom: 10px;
 }
 
-/* 공고 내용 스타일 */
-.description {
-    width: 300px;
-    height: 180px;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 8px;
-    letter-spacing: 0%;
-    color: #9795B5;
-    text-align: left;
-}
-
-/* 마감일 스타일 */
-.deadline {
-    width: 157px;
-    height: 18px;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 700;
+/* 공고 요구사항 스타일 */
+.requirements {
     font-size: 16px;
-    line-height: 18px;
-    letter-spacing: 0%;
-    text-align: left;
-    color: #8D8BA7;
-    margin-top: 5px;
-    align-items: left;
-}
-
-/* 공고 바로가기 버튼 */
-.job-link {
-    display: inline-block;
-    background-color: #6c63ff;
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 8px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s;
+    color: #9795b5;
     text-align: center;
-    margin-top: 10px;
+    margin-bottom: 8px;
 }
 
-.job-link:hover {
-    background-color: #5750e5;
+/* 공고 마감일 스타일 */
+.deadline {
+    font-size: 14px;
+    color: #9795b5;
+    text-align: center;
+}
+
+/* 박스 호버 시 배경 효과 */
+.recruitment-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(189, 186, 230, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 24px;
+}
+
+.recruitment-card:hover::before {
+    opacity: 1;
+}
+
+/* 박스 하단 움직이는 선 효과 */
+.recruitment-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5d5a88, #9795b5);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.recruitment-card:hover::after {
+    width: 100%;
+    left: 0;
 }
