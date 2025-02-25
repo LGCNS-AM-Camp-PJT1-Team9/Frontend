@@ -21,8 +21,7 @@ export default function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           {/*메인, 만약 로그인 하지 않았으면, /login으로 이동*/}
-          {/*<Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> */}
-          <Route path="/" element={<Main />}/>
+          <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> 
 
           {/* 컴포넌트 테스트용 */}
           <Route path="/test" element={<Test/>} />
