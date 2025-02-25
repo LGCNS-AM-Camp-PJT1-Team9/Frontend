@@ -4,6 +4,7 @@ import logo from '../assets/images/Logo_mini.png';
 import lockedIcon from '../assets/images/locked.png';
 import unlockedIcon from '../assets/images/unlocked.png';
 import './Header.css';
+import RecruitmentList from '../pages/recruitment/RecruitmentList';
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
                         <Link to="/news">News</Link>
                         <Link to="/corporations">Corporations</Link>
                         <Link to="/mypage">Mypage</Link>
-                        <Link to="/recruitment">Recruitment</Link>
+                        <Link to="/recruitments" element={<RecruitmentList />}>Recruitment</Link>
                     </>
                 {/* )} */}
                 <div className="auth_button" onClick={handleAuthClick} style={{ cursor: 'pointer' }}>
