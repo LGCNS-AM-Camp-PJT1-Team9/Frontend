@@ -6,11 +6,14 @@ import Login from "./pages/login_sign/Login";
 import Signup from "./pages/login_sign/Signup";
 import { Navigate } from 'react-router-dom';
 import Test from './pages/Test';
+import AdminPage from './pages/admin/AdminPage';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
+
+
 
 export default function App() {
   // 로그인 여부
-  const isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = !!localStorage.getItem("accessToken");
   
   return (
     <div className="app">
@@ -21,10 +24,12 @@ export default function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           {/*메인, 만약 로그인 하지 않았으면, /login으로 이동*/}
-          <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> 
-
+          <Route path="/" element={isAuthenticated ? <Login /> : <Navigate to="/login" />}/> 
+          {/* <Route path="/" element={<Login/>} /> */}
           {/* 채용 공고 목록 페이지 */}
           <Route path="/recruitments" element={<RecruitmentList />} />
+          {/* 관리자 페이지 */}
+          <Route path="/admin" element={<AdminPage/>} />
 
           {/* 컴포넌트 테스트용 */}
           <Route path="/test" element={<Test/>} />
