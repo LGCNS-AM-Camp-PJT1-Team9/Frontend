@@ -70,7 +70,12 @@ export default function Signup() {
         );
 
         if (formData.profilePicture) {
-            formDataToSend.append("profilePicture", formData.profilePicture);
+            formDataToSend.append("file", formData.profilePicture);
+        }
+
+        console.log("FormData 확인:");
+        for (let pair of formDataToSend.entries()) {
+            console.log(pair[0], pair[1]);
         }
 
         try {
