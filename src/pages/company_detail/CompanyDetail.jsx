@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./CompanyDetail.css";
+// import "./CompanyDetail.css";
 
 export default function CompanyDetail() {
   const { companyId } = useParams();

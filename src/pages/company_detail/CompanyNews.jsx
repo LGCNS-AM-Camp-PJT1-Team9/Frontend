@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import "./CompanyNews.css";
+// import "./CompanyNews.css";
 
 export default function CompanyNews() {
   const location = useLocation();
