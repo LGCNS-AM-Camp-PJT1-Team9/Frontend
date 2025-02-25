@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,8 +10,21 @@ import Main from './pages/main/Main';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
 
 export default function App() {
-  // 로그인 여부
-  const isAuthenticated = !localStorage.getItem("token");
+  // 로그인 여부를 useState로 관리
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('accessToken'));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsAuthenticated(!!localStorage.getItem('accessToken'));
+    };
+
+    // localStorage 변화 감지 (다른 탭에서도 동기화 가능)
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
   
   return (
     <div className="app">
