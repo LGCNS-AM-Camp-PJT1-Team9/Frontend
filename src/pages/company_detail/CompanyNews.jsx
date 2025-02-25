@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
-// import "./CompanyNews.css";
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 export default function CompanyNews() {
   const location = useLocation();
-  const { companyId } = useParams();
-  const [company, setCompany] = useState(location.state?.company || null);
-  const [news, setNews] = useState(location.state?.news || []);
+  const { company, news } = location.state || {}; // 데이터가 없을 경우 undefined 방지
 
-  useEffect(() => {
-    if (!company || news.length === 0) {
-      axios.get(`http://localhost:8080/api/company/${companyId}`)
-        .then(response => {
-          setCompany(response.data.data.company);
-          setNews(response.data.data.news);
-        })
-        .catch(error => {
-          console.error("데이터 불러오기 실패:", error);
-        });
-    }
-  }, [companyId]);
-
-  if (!company) return <p className="loading">로딩 중...</p>;
+  if (!company || news.length === 0) {
+    return <p className="loading">데이터가 없습니다. 이전 페이지에서 접근하세요.</p>;
+  }
 
   return (
     <div className="company-news-container">
