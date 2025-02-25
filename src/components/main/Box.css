@@ -48,12 +48,12 @@
 .box-title {
     font-size: 24px;
     margin: 15px 0;
-    color: #333;
+    color: #5d5a88;
 }
 
 .box-description {
     font-size: 16px;
-    color: #666;
+    color: #9795b5;
     margin-bottom: 20px;
 }
 
@@ -75,3 +75,21 @@
 .box:hover::before {
     opacity: 1;
 }
+
+/* 하단 움직이는 선 추가 */
+.box::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5d5a88, #9795b5);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.box:hover::after {
+    width: 100%;
+    left: 0;
+}
+
