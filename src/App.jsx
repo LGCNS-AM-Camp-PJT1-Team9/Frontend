@@ -11,7 +11,7 @@ import RecruitmentList from './pages/recruitment/RecruitmentList';
 
 export default function App() {
   // 로그인 여부
-  const isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = !localStorage.getItem("token");
   
   return (
     <div className="app">
