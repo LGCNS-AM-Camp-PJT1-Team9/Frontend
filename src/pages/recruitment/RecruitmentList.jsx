@@ -159,22 +159,22 @@ export default function RecruitmentList() {
             <Title mainTitle2={"최근 인기 공고"} />
             <div className="recruitment-grid">
                 {recruitments.map((job) => (
-                    <div key={job.id} className="recruitment-card">
+                    <a
+                        key={job.id}
+                        href={job.description.startsWith("http") ? job.description : "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="recruitment-card"
+                    >
                         <h3 className="company-title">{job.title}</h3>
                         <p className="requirements">{job.requirements}</p>
                         <p className="deadline">
                             마감 | {job.deadline === "2033-12-31T00:00:00" ? "상시 채용" : job.deadline.split("T")[0]}
                         </p>
-                        {job.description.startsWith("http") ? (
-                            <a href={job.description} target="_blank" rel="noopener noreferrer" className="job-link">
-                                공고 바로가기
-                            </a>
-                        ) : (
-                            <p className="description">{job.description}</p>
-                        )}
-                    </div>
+                    </a>
                 ))}
             </div>
+
         </div>
     );
 }
