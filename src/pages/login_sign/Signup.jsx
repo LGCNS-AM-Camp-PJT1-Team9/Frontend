@@ -73,11 +73,6 @@ export default function Signup() {
             formDataToSend.append("file", formData.profilePicture);
         }
 
-        console.log("FormData 확인:");
-        for (let pair of formDataToSend.entries()) {
-            console.log(pair[0], pair[1]);
-        }
-
         try {
             //서버로 POST 요청 전송
             const response = await axios.post("http://localhost:8072/jobbotdari-user/api/auth/signup", formDataToSend, {
