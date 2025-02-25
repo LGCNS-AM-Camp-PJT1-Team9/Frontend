@@ -38,7 +38,7 @@ export default function Header() {
                         <Link to="/news">News</Link>
                         <Link to="/corporations">Corporations</Link>
                         <Link to="/mypage">Mypage</Link>
-                        <Link to="/Jobs">Jobs</Link>
+                        <Link to="/recruitment">Recruitment</Link>
                     </>
                 {/* )} */}
                 <div className="auth_button" onClick={handleAuthClick} style={{ cursor: 'pointer' }}>
