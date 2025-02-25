@@ -55,9 +55,20 @@ export default function Signup() {
 
         // 서버에 전송할 formData 객체 생성
         const formDataToSend = new FormData();
-        formDataToSend.append("name", name);
-        formDataToSend.append("username", username);
-        formDataToSend.append("password", password);
+
+        // JSON 문자열로 변환 후 Blob으로 추가
+        const signupRequestDto = {
+            name: name,
+            username: username,
+            password: password,
+            passwordConfirm: passwordConfirm
+        };
+
+        formDataToSend.append(
+            "signupRequestDto",
+            new Blob([JSON.stringify(signupRequestDto)], { type: "application/json" })
+        );
+
         if (formData.profilePicture) {
             formDataToSend.append("profilePicture", formData.profilePicture);
         }
