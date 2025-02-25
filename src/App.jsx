@@ -6,6 +6,7 @@ import Login from "./pages/login_sign/Login";
 import Signup from "./pages/login_sign/Signup";
 import { Navigate } from 'react-router-dom';
 import Test from './pages/Test';
+import Main from './pages/main/Main';
 
 export default function App() {
   // 로그인 여부
