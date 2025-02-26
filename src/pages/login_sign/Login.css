@@ -4,6 +4,7 @@
     justify-content: center;
     gap: 50px;
     margin-block: 30px;
+    padding: 65px 65px;
 }
 /* 앱 설명 컨테이너 */
 .app_discription {
