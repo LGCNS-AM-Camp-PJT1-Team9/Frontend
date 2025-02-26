@@ -5,7 +5,7 @@ import lockedIcon from '../assets/images/locked.png';
 import unlockedIcon from '../assets/images/unlocked.png';
 import './Header.css';
 
-export default function Header({ isAuthenticated, setIsAuthenticated }) {
+export default function Header({ isAuthenticated, setIsAuthenticated, isAdmin }) {
     const navigate = useNavigate();
 
     const handleAuthClick = () => {
@@ -25,7 +25,7 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
                 <img src={logo} alt="Logo" className="logo" />
             </div>
             <nav className="header_menu">
-                {isAuthenticated && (
+                {isAuthenticated && !isAdmin && (
                     <>
                         <Link to="/">Main</Link>
                         <Link to="/news">News</Link>

@@ -17,7 +17,7 @@ export default function UserListContainer() {
 
     // 로컬 스토리지에서 accessToken 가져오기
     const getAccessToken = () => {
-        return localStorage.getItem("accessToken");
+        return sessionStorage.getItem("accessToken");
     };
 
     // 사용자 리스트 조회

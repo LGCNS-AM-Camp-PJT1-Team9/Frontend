@@ -18,7 +18,7 @@ export default function LogContainer() {
 
     // 로컬 스토리지에서 accessToken 가져오기
     const getAccessToken = () => {
-        return localStorage.getItem("accessToken");
+        return sessionStorage.getItem("accessToken");
     };
 
     // 로그 데이터 가져오기

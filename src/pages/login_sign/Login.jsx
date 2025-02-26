@@ -7,7 +7,7 @@ import './Login.css';
 import { InputLabel } from "../../components/common/InputLabel";
 import PurpleBtn from "../../components/common/PurpleBtn";
 
-export default function Login({ setIsAuthenticated }) {
+export default function Login({ setIsAuthenticated, setIsAdmin }) {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
@@ -32,8 +32,10 @@ export default function Login({ setIsAuthenticated }) {
       
       if (userRole == 'USER') {
         navigate("/"); // 홈 페이지로 이동
+        setIsAdmin(false);
       } else {
         navigate("/admin"); // 관리자 페이지로 이동 
+        setIsAdmin(true);
       }
     } catch (error) {
       console.error("로그인 실패:", error);
