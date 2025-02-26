@@ -11,6 +11,7 @@ import RecruitmentList from './pages/recruitment/RecruitmentList';
 import Company from './pages/company/Company';
 import CompanyDetail from './pages/company_detail/CompanyDetail';
 import CompanyNews from './pages/company_detail/CompanyNews';
+import UserInfo from './pages/mypage/UserInfo';
 
 
 
@@ -51,6 +52,9 @@ export default function App() {
           {/* 관리자 페이지 */}
           <Route path="/admin" element={isAuthenticated ? <AdminPage/> : <Navigate to="/login" />} />
           <Route path="/test" element={<Test />} />
+
+          {/* 마이페이지 */}
+          <Route path="/mypage" element={isAuthenticated ? <UserInfo /> : <Navigate to="/login" />} />
         </Routes>
       </main>
       <Footer />
