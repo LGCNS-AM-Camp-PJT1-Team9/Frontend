@@ -8,6 +8,7 @@ import { Navigate } from 'react-router-dom';
 import Test from './pages/Test';
 import Main from './pages/main/Main';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
+import Company from './pages/company/Company';
 
 export default function App() {
   // 로그인 여부
@@ -23,6 +24,9 @@ export default function App() {
           <Route path="/signup" element={<Signup/>} />
           {/*메인, 만약 로그인 하지 않았으면, /login으로 이동*/}
           <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> 
+
+          {/* 기업 정보 조회 페이지 */}
+          <Route path="/Corporations" element={<Company/>} />
 
           {/* 채용 공고 목록 페이지 */}
           <Route path="/recruitments" element={<RecruitmentList />} />
