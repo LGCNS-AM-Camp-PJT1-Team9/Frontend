@@ -22,7 +22,7 @@ export default function Header({ isAuthenticated, setIsAuthenticated }) {
     return (
         <header className="header">
             <div className="logo_container">
-                <img src={logo} alt="Logo" className="logo" />
+                <img src={logo} alt="Logo" className="logo" onClick={() => navigate('/')}/>
             </div>
             <nav className="header_menu">
                 {isAuthenticated && (
