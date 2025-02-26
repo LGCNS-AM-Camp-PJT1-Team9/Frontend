@@ -36,8 +36,7 @@ export default function Header() {
                 {/* {isLoggedIn && ( */}
                     <>
                         <Link to="/">Main</Link>
-                        <Link to="/news">News</Link>
-                        <Link to="/corporations">Corporations</Link>
+                        <Link to="/company">Corporations</Link>
                         <Link to="/mypage">Mypage</Link>
                         <Link to="/recruitments" element={<RecruitmentList />}>Recruitment</Link>
                     </>

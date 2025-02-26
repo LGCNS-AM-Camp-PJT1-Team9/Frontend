@@ -9,6 +9,8 @@ import Test from './pages/Test';
 import Main from './pages/main/Main';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
 import Company from './pages/company/Company';
+import CompanyDetail from './pages/company_detail/CompanyDetail';
+import CompanyNews from './pages/company_detail/CompanyNews';
 
 export default function App() {
   // 로그인 여부
@@ -26,8 +28,14 @@ export default function App() {
           <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />}/> 
 
           {/* 기업 정보 조회 페이지 */}
-          <Route path="/Corporations" element={<Company/>} />
+          <Route path="/company" element={<Company />} />
 
+          {/* 기업 상세 정보 페이지 */}
+          <Route path="/company/:companyId" element={<CompanyDetail />} />
+
+          {/* 기업 뉴스 페이지 */}
+          <Route path="/company/:companyId/news" element={<CompanyNews />} />
+          
           {/* 채용 공고 목록 페이지 */}
           <Route path="/recruitments" element={<RecruitmentList />} />
 
