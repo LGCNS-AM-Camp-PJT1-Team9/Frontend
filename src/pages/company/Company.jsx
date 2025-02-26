@@ -19,7 +19,7 @@ const CompanyList = () => {
 
   // 로컬 저장소에서 Access Token 가져오기
   const getAccessToken = () => {
-    return localStorage.getItem("accessToken");
+    return sessionStorage.getItem("accessToken");
   };
 
   // 컴포넌트가 마운트될 때 기업 데이터와 관심 기업 데이터 가져오기
