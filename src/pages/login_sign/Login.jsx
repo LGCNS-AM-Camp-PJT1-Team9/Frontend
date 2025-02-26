@@ -9,15 +9,24 @@ import PurpleBtn from "../../components/common/PurpleBtn";
 
 export default function Login({ setIsAuthenticated, setIsAdmin }) {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
+    setErrorMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
+
+    if (!credentials.username || !credentials.password) {
+      setErrorMessage("아이디와 비밀번호를 입력해주세요.");
+      return;
+    }
+
     console.log("로그인 요청 시작:", credentials);
 
     try {
@@ -39,7 +48,13 @@ export default function Login({ setIsAuthenticated, setIsAdmin }) {
       }
     } catch (error) {
       console.error("로그인 실패:", error);
-      alert(error.response?.data?.message || "로그인에 실패했습니다.");
+
+      // 아이디 또는 비밀번호 오류 시 하나의 메시지만 표시
+      if (error.response) {
+        setErrorMessage("아이디 또는 비밀번호가 일치하지 않습니다.");
+      } else {
+        setErrorMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
 
@@ -79,6 +94,11 @@ export default function Login({ setIsAuthenticated, setIsAdmin }) {
                     아직 회원가입을 안 하셨나요? 회원가입 바로가기
                 </div>
             </div>
+            {errorMessage && (
+              <div className="error_message_container">
+                <p className="error_message">{errorMessage}</p>
+              </div>
+            )}
         </div>
     </div>
   );

@@ -1,0 +1,108 @@
+/* 🔹 관심 기업 선택 컨테이너 */
+.interest_companies_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* 🔹 관심 기업 제목 */
+.interest_companies_container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* 🔹 기업 리스트 그리드 */
+.company_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 항상 3개의 열 유지 */
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center; /* 중앙 정렬 */
+    place-items: center; /* 카드 내용도 중앙 정렬 */
+}
+
+/* 🔹 개별 기업 카드 (뉴스 카드 스타일 반영) */
+.company_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 300px;
+    min-height: 120px; /* 뉴스 카드와 동일 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🔹 관심 기업 선택 (진한 색상 적용, 뉴스 카드 스타일과 일관성 유지) */
+.company_card.selected {
+    background-color: #E7E6F2; /* 선택된 상태 */
+    border: 2px solid #5d5a88;
+    transform: scale(1.05); /* 선택 시 살짝 확대 */
+}
+
+/* 🔹 클릭 시 부드러운 색상 전환 */
+.company_card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔹 카드 하단 강조 효과 (뉴스 카드 스타일 반영) */
+.company_card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5d5a88, #9795b5);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.company_card:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* 🔹 로딩 및 에러 메시지 스타일 */
+.loading,
+.error_message {
+    text-align: center;
+    font-size: 16px;
+    color: #d32f2f;
+    margin-top: 20px;
+}
+
+/* 🔹 반응형 디자인 */
+@media (max-width: 1024px) {
+    .company_grid {
+        grid-template-columns: repeat(2, 1fr); /* 화면이 작아지면 2개씩 */
+    }
+}
+
+@media (max-width: 768px) {
+    .company_grid {
+        grid-template-columns: repeat(1, 1fr); /* 모바일에서는 1개씩 */
+        gap: 20px;
+    }
+    .company_card {
+        font-size: 16px;
+        padding: 25px;
+        width: 250px;
+        min-height: 160px;
+    }
+}

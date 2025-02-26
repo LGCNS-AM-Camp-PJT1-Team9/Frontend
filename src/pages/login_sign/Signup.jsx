@@ -8,64 +8,93 @@ import PurpleBtn from "../../components/common/PurpleBtn";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-    // 사용자가 입력한 formData 상태 관리
     const [formData, setFormData] = useState({
         name: "",
         username: "",
         password: "",
         passwordConfirm: "",
-        profilePicture: null, // 프로필 사진 파일
+        profilePicture: null,
     });
 
-    const [preview, setPreview] = useState(null); // 미리보기 URL 상태
-    const [fileName, setFileName] = useState(""); // 파일 이름 상태
+    const [preview, setPreview] = useState(null);
+    const [fileName, setFileName] = useState("");
+    const [errors, setErrors] = useState({});
 
     const navigate = useNavigate();
+
+    // 비밀번호 정규식 패턴
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+
+        // 비밀번호 검증 로직 추가
+        if (name === "password") {
+            if (!passwordRegex.test(value)) {
+                setErrors((prevErrors) => ({ 
+                    ...prevErrors, 
+                    password: "비밀번호는 8자 이상이며, 대소문자, 숫자, 특수문자를 포함해야 합니다." 
+                }));
+            } else {
+                setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+            }
+        }
+
+        if (name === "passwordConfirm") {
+            if (value !== formData.password) {
+                setErrors((prevErrors) => ({ 
+                    ...prevErrors, 
+                    passwordConfirm: "비밀번호가 일치하지 않습니다." 
+                }));
+            } else {
+                setErrors((prevErrors) => ({ ...prevErrors, passwordConfirm: "" }));
+            }
+        }
     };
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setFormData({ ...formData, profilePicture: file });
 
-        // 파일이 선택되었을 때 파일 이름과 미리보기 URL 생성
         if (file) {
-            setFileName(file.name); // 파일 이름 설정
+            setFileName(file.name);
             const previewUrl = URL.createObjectURL(file);
             setPreview(previewUrl);
         } else {
-            setFileName(""); // 파일 이름 초기화
-            setPreview(null); // 미리보기 초기화
+            setFileName("");
+            setPreview(null);
         }
+    };
+
+    const handleValidationErrors = (reason) => {
+        if (!reason) return;
+        const reasonList = reason.split(", ").filter(Boolean);
+        setErrors((prevErrors) => ({ ...prevErrors, general: reasonList.join("\n") }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors({});
+
         const { name, username, password, passwordConfirm } = formData;
 
-        // 간단한 유효성 검사
         if (!name || !username || !password || !passwordConfirm) {
-            alert("모든 필드를 입력해주세요.");
+            setErrors({ general: "모든 필드를 입력해주세요." });
+            return;
+        }
+        if (!passwordRegex.test(password)) {
+            setErrors({ password: "비밀번호는 8자 이상이며, 대소문자, 숫자, 특수문자를 포함해야 합니다." });
             return;
         }
         if (password !== passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다.");
+            setErrors({ passwordConfirm: "비밀번호가 일치하지 않습니다." });
             return;
         }
 
-        // 서버에 전송할 formData 객체 생성
         const formDataToSend = new FormData();
-
-        // JSON 문자열로 변환 후 Blob으로 추가
-        const signupRequestDto = {
-            name: name,
-            username: username,
-            password: password,
-            passwordConfirm: passwordConfirm
-        };
+        const signupRequestDto = { name, username, password, passwordConfirm };
 
         formDataToSend.append(
             "signupRequestDto",
@@ -77,22 +106,38 @@ export default function Signup() {
         }
 
         try {
-            //서버로 POST 요청 전송
-            const response = await axios.post("http://localhost:8072/jobbotdari-user/api/auth/signup", formDataToSend, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            const response = await axios.post(
+                "http://localhost:8072/jobbotdari-user/api/auth/signup",
+                formDataToSend,
+                { headers: { "Content-Type": "multipart/form-data" } }
+            );
 
             if (response.status === 200) {
                 alert("회원가입 성공!");
                 navigate("/");
             } else {
-                alert(response.data.message || "회원가입 실패");
+                setErrors({ general: response.data.message || "회원가입 실패" });
             }
         } catch (error) {
             console.error("Error:", error);
-            alert(error.response?.data?.message || "서버와 통신 중 문제가 발생했습니다.");
+            if (error.response) {
+                const { code, message, reason } = error.response.data;
+                switch (code) {
+                    case "USER_001": 
+                        setErrors((prevErrors) => ({ ...prevErrors, general: "이미 사용 중인 아이디입니다." }));
+                        break;
+                    case "USER_002": 
+                        setErrors((prevErrors) => ({ ...prevErrors, passwordConfirm: "비밀번호와 비밀번호 확인이 일치하지 않습니다." }));
+                        break;
+                    case "G011": 
+                        handleValidationErrors(reason);
+                        break;
+                    default:
+                        setErrors((prevErrors) => ({ ...prevErrors, general: message || "서버와 통신 중 문제가 발생했습니다." }));
+                }
+            } else {
+                setErrors({ general: "네트워크 오류가 발생했습니다. 다시 시도해주세요." });
+            }
         }
     };
 
@@ -118,23 +163,28 @@ export default function Signup() {
                         />
                     </div>
                     <div className="display_flex">
-                        <InputLabel
-                            label="비밀번호"
-                            name="password"
-                            type="password"
-                            placeholder="비밀번호를 입력해주세요"
-                            value={formData.password}
-                            onChange={handleChange}
-
-                        />
-                        <InputLabel
-                            label="비밀번호 확인"
-                            name="passwordConfirm"
-                            type="password"
-                            placeholder="비밀번호를 입력해주세요"
-                            value={formData.passwordConfirm}
-                            onChange={handleChange}
-                        />
+                        <div>
+                            <InputLabel
+                                label="비밀번호"
+                                name="password"
+                                type="password"
+                                placeholder="비밀번호를 입력해주세요"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                            {errors.password && <p className="input_error_message">{errors.password}</p>}
+                        </div>
+                        <div>
+                            <InputLabel
+                                label="비밀번호 확인"
+                                name="passwordConfirm"
+                                type="password"
+                                placeholder="비밀번호를 입력해주세요"
+                                value={formData.passwordConfirm}
+                                onChange={handleChange}
+                            />
+                            {errors.passwordConfirm && <p className="input_error_message">{errors.passwordConfirm}</p>}
+                        </div>
                     </div>
                     <InputLabel
                         label="프로필 사진"
@@ -146,13 +196,15 @@ export default function Signup() {
                     />
                     
                     <PurpleBtn text="회원가입" type="submit" width="100%"/>
+
+                    {errors.general && (
+                        <div className="error_message_container">
+                            <p className="error_message">{errors.general}</p>
+                        </div>
+                    )}
                 </form>
-                {/* 프로필 사진 미리보기 섹션 */}
                 <div className="signup_profile" style={{ marginTop: "20px" }}>
-                    <img
-                        src={preview || defatultProfile}
-                        alt="미리보기"
-                    />
+                    <img src={preview || defatultProfile} alt="미리보기"/>
                 </div>
             </div>
         </div>

@@ -11,9 +11,7 @@ import RecruitmentList from './pages/recruitment/RecruitmentList';
 import Company from './pages/company/Company';
 import CompanyDetail from './pages/company_detail/CompanyDetail';
 import CompanyNews from './pages/company_detail/CompanyNews';
-import UserInfo from './pages/mypage/UserInfo';
-import UserForm from './pages/mypage/UserForm';
-import MyPage from './pages/mypage/Mypage';
+import MyPage from './pages/mypage/MyPage';
 
 
 

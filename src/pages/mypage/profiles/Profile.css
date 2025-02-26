@@ -1,0 +1,123 @@
+/* 프로필 페이지 컨테이너 */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* 메인 레이아웃 */
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 900px;
+}
+
+/* 폼 컨테이너 */
+.profile-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 폼 내부 정렬 */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    gap: 15px;
+}
+
+/* 입력 필드 그룹 */
+.display-flex {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+input[name="name"] {
+    width: 100% !important;  /* 부모 크기만큼 확장 */
+    max-width: 500px !important; /* 최대 너비 제한 */
+    min-width: 390px !important; /* 최소 너비 설정 */
+}
+
+/* 파일 입력 필드 */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.file-input-wrapper input {
+    flex: 1;
+    background: #fff;
+}
+
+/* 버튼 스타일 */
+.profile-submit-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    background-color: #5d5a88;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-submit-btn:hover {
+    background-color: #bab9cd;
+}
+
+/* 프로필 사진 컨테이너 */
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #f3f3f3;
+    border-radius: 15px;
+}
+
+.profile-image-container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+    color: #d32f2f;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
