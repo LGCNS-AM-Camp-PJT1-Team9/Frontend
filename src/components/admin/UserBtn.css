@@ -1,0 +1,19 @@
+.user-button {
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid #F5F5F7;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.user-button:hover {
+    background-color: #D4D2E3;
+}
+
+.user-button.selected {
+    background-color: #D4D2E3;
+    font-weight: 600;
+}

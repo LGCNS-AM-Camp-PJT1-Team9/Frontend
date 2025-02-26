@@ -21,7 +21,7 @@ const Main = () => {
             description: "관심 기업을 설정하여 \n추천 기업과 뉴스를 맞춤형으로 봐요!",
         },
         {
-            link: "/recruitment",
+            link: "/recruitments",
             image: RecruitmentImage,
             title: "채용 정보",
             description: "인기 있는 채용 공고를 \n한눈에 볼 수 있어요!",
