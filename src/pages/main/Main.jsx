@@ -9,7 +9,7 @@ import Title from '../../components/common/Title';
 const Main = () => {
     const boxData = [
         {
-            link: "/corporations",
+            link: "/company",
             image: CorporationsImage,
             title: "기업 정보와 뉴스 조회",
             description: "기업 정보와 그 기업의 뉴스의 정보를 \n조회할 수 있고 관심 기업을 설정하면 \n그 정보만 조회할 수 있어요 !",
