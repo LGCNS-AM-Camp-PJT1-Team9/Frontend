@@ -60,6 +60,10 @@
     transition: 0.3s;
 }
 
+.user-card:hover {
+    transform: translateY(-10px);
+}
+
 /* 카드가 선택되었을 때 강조 */
 .user-card.selected {
     border-color: #B4B2CD;
