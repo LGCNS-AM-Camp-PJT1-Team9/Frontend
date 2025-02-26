@@ -12,6 +12,8 @@ import Company from './pages/company/Company';
 import CompanyDetail from './pages/company_detail/CompanyDetail';
 import CompanyNews from './pages/company_detail/CompanyNews';
 import UserInfo from './pages/mypage/UserInfo';
+import UserForm from './pages/mypage/UserForm';
+import MyPage from './pages/mypage/Mypage';
 
 
 
@@ -54,7 +56,7 @@ export default function App() {
           <Route path="/test" element={<Test />} />
 
           {/* 마이페이지 */}
-          <Route path="/mypage" element={isAuthenticated ? <UserInfo /> : <Navigate to="/login" />} />
+          <Route path="/mypage" element={isAuthenticated ? <MyPage /> : <Navigate to="/login" />} />
         </Routes>
       </main>
       <Footer />
