@@ -3,11 +3,14 @@ import axios from "axios";
 import "./AdminComponents.css"; 
 import UserCard from "./UserCard";
 import PurpleBtn from "../common/PurpleBtn"; 
+import LoadingSpinner from "../common/LoadingSpinner"; // 로딩 스피너 컴포넌트 import
 import { useNavigate } from "react-router-dom";
 
 export default function UserListContainer() {
     const [users, setUsers] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState(new Set());
+    const [isLoading, setIsLoading] = useState(true); // 로딩 상태 변수
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const userServerBaseUrl = "http://localhost:8072/jobbotdari-user";
@@ -19,29 +22,33 @@ export default function UserListContainer() {
 
     // 사용자 리스트 조회
     useEffect(() => {
-        const accessToken = getAccessToken();
-        if (!accessToken) {
-            alert("로그인이 필요합니다.");
-            navigate('/login');
-            return;
-        }
-
-        axios.get(`${userServerBaseUrl}/admin/users`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        })
-        .then(response => {
-            if (response.data && response.data.data) {
-                console.log(response.data.data);
-                setUsers(response.data.data);
+        const fetchUsers = async () => {
+            const accessToken = getAccessToken();
+            if (!accessToken) {
+                alert("로그인이 필요합니다.");
+                navigate('/login');
+                return;
             }
-        })
-        .catch(error => {
-            console.error("사용자 데이터를 불러오는 데 실패했습니다.", error);
-            alert("사용자 조회에 실패하였습니다.");
-        });
-    }, []);
+
+            try {
+                const response = await axios.get(`${userServerBaseUrl}/admin/users`, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+                if (response.data && response.data.data) {
+                    setUsers(response.data.data);
+                }
+            } catch (err) {
+                console.error("사용자 데이터를 불러오는 데 실패했습니다.", err);
+                setError("사용자 조회에 실패하였습니다.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchUsers();
+    }, [navigate]);
 
     // 사용자 선택/해제 토글
     const toggleSelectUser = (id) => {
@@ -79,8 +86,8 @@ export default function UserListContainer() {
                         },
                     });
                     deletedUserIds.push(userId);
-                } catch (error) {
-                    console.error(`사용자 ${userId} 삭제 실패:`, error);
+                } catch (err) {
+                    console.error(`사용자 ${userId} 삭제 실패:`, err);
                 }
             }
 
@@ -89,15 +96,22 @@ export default function UserListContainer() {
             setSelectedUsers(new Set()); // 선택 초기화
 
             alert("선택한 사용자가 삭제되었습니다.");
-        } catch (error) {
-            console.error("사용자 삭제 실패:", error);
+        } catch (err) {
+            console.error("사용자 삭제 실패:", err);
             alert("사용자 삭제 중 오류가 발생했습니다.");
         }
     };
 
+    if (isLoading) {
+        return <LoadingSpinner />; // 로딩 중이면 스피너 컴포넌트 표시
+    }
+
+    if (error) {
+        return <p className="error">{error}</p>;
+    }
+
     return (
         <div className="admin-container">
-            {/* 피그마 디자인처럼 중앙에 제목/설명 */}
             <h2 className="admin-title">사용자 리스트</h2>
             <p className="admin-subtitle">삭제할 유저를 선택해주세요.</p>
 
@@ -106,14 +120,13 @@ export default function UserListContainer() {
                     <UserCard
                         key={user.id}
                         name={user.username}
-                        // 선택 여부에 따라 CSS 구분
                         isSelected={selectedUsers.has(user.id)}
                         onClick={() => toggleSelectUser(user.id)}
                     />
                 ))}
             </div>
 
-            <PurpleBtn text="사용자 삭제" onClick={handleDeleteUsers} /> {/* PurpleBtn 사용 */}
+            <PurpleBtn text="사용자 삭제" onClick={handleDeleteUsers} />
         </div>
     );
 }
