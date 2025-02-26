@@ -1,0 +1,87 @@
+/* 전체 컨테이너 */
+.company-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* 섹션 제목 */
+.favorite-companies h2,
+.all-companies h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5d5a88;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* 로딩 및 에러 메시지 */
+.loading,
+.error {
+    font-size: 18px;
+    color: #9795b5;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 카드 그리드 */
+.company-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    justify-content: center;
+}
+
+/* 개별 카드 스타일 */
+.company-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #f2f1fa;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 20px;
+    width: 330px;
+    height: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 텍스트 색상 상속 */
+    cursor: pointer;
+}
+
+.company-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #5d5a88;
+    text-align: center;
+}
+
+/* 카드 호버 효과 */
+.company-card:hover {
+    transform: translateY(-10px);
+    background: rgba(164, 161, 211, 0.2); /* 배경 색 변화 */
+}
+
+/* 박스 하단 움직이는 선 효과 */
+.company-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5d5a88, #9795b5);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.company-card:hover::after {
+    width: 100%;
+    left: 0;
+}
+
