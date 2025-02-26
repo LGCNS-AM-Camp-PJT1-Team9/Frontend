@@ -5,6 +5,7 @@ import "./Signup.css";
 import { InputLabel } from "../../components/common/InputLabel";
 import defatultProfile from "../../assets/images/Defalt_Profile_Image.png";
 import PurpleBtn from "../../components/common/PurpleBtn";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
     // 사용자가 입력한 formData 상태 관리
@@ -18,6 +19,8 @@ export default function Signup() {
 
     const [preview, setPreview] = useState(null); // 미리보기 URL 상태
     const [fileName, setFileName] = useState(""); // 파일 이름 상태
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -83,6 +86,7 @@ export default function Signup() {
 
             if (response.status === 200) {
                 alert("회원가입 성공!");
+                navigate("/");
             } else {
                 alert(response.data.message || "회원가입 실패");
             }
