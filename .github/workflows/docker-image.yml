@@ -33,6 +33,4 @@ jobs:
           echo "Building and pushing $IMAGE_NAME:$IMAGE_TAG"
 
           docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile $CONTEXT
-          docker tag $IMAGE_NAME:$IMAGE_TAG $IMAGE_NAME:${{ github.sha }}
           docker push $IMAGE_NAME:$IMAGE_TAG
-          docker push $IMAGE_NAME:${{ github.sha }}
