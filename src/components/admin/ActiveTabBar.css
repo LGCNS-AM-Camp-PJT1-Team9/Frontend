@@ -1,0 +1,25 @@
+.tab-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tab-item {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-item:hover {
+    color: #555;
+  }
+  
+  .tab-item.active {
+    color: #333;
+    border-bottom: 2px solid #6c63ff; /* 선택된 탭 강조 */
+  }

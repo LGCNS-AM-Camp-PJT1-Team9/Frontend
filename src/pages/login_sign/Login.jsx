@@ -24,12 +24,17 @@ export default function Login({ setIsAuthenticated }) {
       const response = await axios.post("http://localhost:8072/jobbotdari-user/api/auth/signin", credentials, {
         headers: { "Content-Type": "application/json" }
       });
-      const { accessToken } = response.data.data;
+      const { accessTokenm userRole } = response.data.data;
 
       sessionStorage.setItem("accessToken", accessToken);
       setIsAuthenticated(true);
       alert("로그인 성공!");
-      navigate("/");
+      
+      if (userRole == 'USER') {
+        navigate("/"); // 홈 페이지로 이동
+      } else {
+        navigate("/admin"); // 관리자 페이지로 이동 
+      }
     } catch (error) {
       console.error("로그인 실패:", error);
       alert(error.response?.data?.message || "로그인에 실패했습니다.");

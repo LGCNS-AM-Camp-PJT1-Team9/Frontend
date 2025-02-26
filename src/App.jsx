@@ -5,8 +5,11 @@ import Header from "./components/Header";
 import Login from "./pages/login_sign/Login";
 import Signup from "./pages/login_sign/Signup";
 import Test from './pages/Test';
+import AdminPage from './pages/admin/AdminPage';
 import Main from './pages/main/Main';
 import RecruitmentList from './pages/recruitment/RecruitmentList';
+
+
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!sessionStorage.getItem('accessToken'));
@@ -34,6 +37,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={isAuthenticated ? <Main /> : <Navigate to="/login" />} />
           <Route path="/recruitments" element={isAuthenticated ? <RecruitmentList /> : <Navigate to="/login" />} />
+            <Route path="/admin" element={isAuthenticated ? <AdminPage/> : <Navigate to="/login" />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       </main>
